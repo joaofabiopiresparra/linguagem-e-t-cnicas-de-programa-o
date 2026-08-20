@@ -5,7 +5,7 @@
 
 int main(int argc, char *argv[]) {
 
-/*
+
 // exercicio 1
 	
 	int a,b;
@@ -52,21 +52,79 @@ int main(int argc, char *argv[]) {
 	//exercicio 3
 	
 	
-	*/
 	
-	int d, resultado;
+	
+		int num, bit;
 	printf("insira um numero: ");
-	scanf ("%d", d);
-	if (d>1) {
-		while (d<=1) {
-			resultado = d %2;
-			d = d/2;
-			printf ("%d", resultado);
-		}
-	};
+	scanf ("%d", &num); // sim, eu fiquei meia hora tentando descobrir pq tava dando errado ate que eu lembrei do & eu o deio o C
 	
-	// nao funcionando  ^	
+		while (num>0) {
+			bit = num%2;
+			num = num/2;
+			printf("%d", bit); //nao sei escrever de traz para frente. vai ficar assim mesmo gastei muito tempo tentando emtender o while
+		};
+		printf ("\n nota-se que o binario esta ao contrario");
 	
+
+
 	
-	return 0;
-}
+
+
+	//exercicio 4
+
+
+
+
+
+
+
+
+	float salario, vendas;
+printf ("insira o valor do seu salario e total do valor de vendas: ");
+scanf ("%f \n %f", &salario, &vendas);
+salario = salario + vendas*0.15;
+printf ("%f", salario);
+
+
+
+
+
+//exercicio 5
+
+
+
+
+
+
+
+
+int valor1, valor2, valor3, calculo;
+printf("digite 3 valores: \n");
+scanf ("%d %d %d", &valor1, &valor2, &valor3);
+calculo = valor1+valor2+valor3;
+printf ("soma: %d\n", calculo);
+calculo = (valor1+valor2+valor3)/3;
+printf ("media: %d\n", calculo);
+calculo = valor1*valor2*valor3;
+printf ("produto: %d\n", calculo);
+
+
+//exercicio 6
+
+
+
+
+
+
+
+
+
+int idade, ano, mes, dia;
+printf ("digite sua idade em dias: ");
+scanf ("%d", &idade);
+ano = idade %365;
+mes = ano%12;
+dia = mes%30;
+printf ("\n %d \n %d \n %d", ano, mes, dia);
+
+return 0;
