@@ -109,9 +109,9 @@ calculo = valor1*valor2*valor3;
 printf ("produto: %d\n", calculo);
 
 
+
+
 //exercicio 6
-
-
 
 
 
@@ -122,9 +122,55 @@ printf ("produto: %d\n", calculo);
 int idade, ano, mes, dia;
 printf ("digite sua idade em dias: ");
 scanf ("%d", &idade);
-ano = idade %365;
-mes = ano%12;
-dia = mes%30;
+ano = idade /365;
+idade %= 365;
+mes = idade / 30;
+dia = idade % 30;
 printf ("\n %d \n %d \n %d", ano, mes, dia);
+
+
+
+
+
+
+
+//exercicio 7
+
+
+
+
+
+//#include <math.h>
+
+int raio;
+printf ("digite um valor: ");
+scanf ("%d", &raio);
+raio = 3.14*4/3*pow(raio, 3);
+printf ("o volume de uma esfera é: %d", raio);
+
+
+
+
+
+
+
+// exercicio 8
+
+
+
+
+
+
+
+
+int x1,x2,y1,y2;
+double distancia;
+printf ("digite 4 valores:");
+scanf ("%d %d %d %d", &x1, &x2, &y1,&y2);
+distancia = sqrt(pow(x1-x2, 2)+pow(y1-y2, 2));
+printf ("a distancia entre os pontos é: %f", distancia);
+
+
+
 
 return 0;
