@@ -173,4 +173,38 @@ printf ("a distancia entre os pontos é: %f", distancia);
 
 
 
+
+
+//lista 2
+//exercicio 1
+
+
+
+
+
+	int idade1;
+	printf ("digite sua idade: ");
+	scanf ("%d", &idade1);
+	idade1 = 2026 - idade1;
+	printf ("vc nasceu em %d", idade1);
+
+
+
+
+
+
+
+//exercicio 2
+
+
+
+
+	int velocidade;
+	printf ("digite sua velocidade em Km por hora: ");
+	scanf("%d", &velocidade);
+	velocidade = velocidade / 36;
+	printf("sua velocidade em metros por segundo e %d", velocidade);
+
+
+
 return 0;
