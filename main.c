@@ -199,11 +199,11 @@ printf ("a distancia entre os pontos é: %f", distancia);
 
 
 
-	int velocidade;
+	float velocidade;
 	printf ("digite sua velocidade em Km por hora: ");
-	scanf("%d", &velocidade);
+	scanf("%f", &velocidade);
 	velocidade = velocidade / 36;
-	printf("sua velocidade em metros por segundo e %d", velocidade);
+	printf("sua velocidade em metros por segundo e %f", velocidade);
 
 
 
