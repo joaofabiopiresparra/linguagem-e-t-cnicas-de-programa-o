@@ -207,4 +207,71 @@ printf ("a distancia entre os pontos é: %f", distancia);
 
 
 
+//exercicio 3
+
+
+
+	float dinheiro, cota;
+	printf("digite a cotacao e o valor: ");
+	scanf("%f %f", &dinheiro, &cota);
+	printf("os %d reais sao %d em dolares", dinheiro, (dinheiro/cota));
+
+
+//exercicio 4
+
+
+
+
+
+	float celcius;
+	printf("digite a temperatura: ");
+	scanf("%f", &celcius);
+	celcius = celcius * 9 / 5 + 32;
+	printf("temperatura e fahrenheit: %f", celcius);
+
+
+
+
+
+
+//exercicio 5
+
+
+
+
+	float graus;
+	printf("digite o angulo em graus: ");
+	scanf("%f", &graus);
+	graus = graus * 3.14 / 180;
+	printf("o angulo em radianos e: %f", graus);
+
+
+
+
+
+
+//exercicio 6
+
+	int numero5;
+	printf("digite um numero: ");
+	scanf("%d", &numero5);
+	printf("o sucesor e %d e o antecesor e %d", (numero5+1), (numero5-1));
+
+//exercicio 7
+
+	int umvalorae = 780000;
+	printf("o premio de 780.000 reais sera dividido por 3 vencedores: \n\n o vencedor 1 ganhou: %f \n\n o vencedor 2 ganhou: %f \n\n e o vencedor 3 ganhou: %f", (umvalorae* 0.46), (umvalorae* 0.32), (umvalorae* 0.22));
+
+//exercicio 8
+
+	int sec, min, horas;
+	printf("digite um valor em segundos");
+	scanf("%d", &sec);
+	horas = sec/3600;
+	min = (sec - (horas*3600)) /60;
+	sec = sec - ((horas*3600) + (min*60));
+	printf("\t %d %d %d", horas, min, sec);
+
+
+
 return 0;
