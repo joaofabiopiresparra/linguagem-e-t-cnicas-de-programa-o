@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
-/* run this program using the console pauser or add your own getch, system("pause") or input loop */
+#include <math.h>
 
 int main(int argc, char *argv[]) {
 
@@ -140,7 +139,7 @@ printf ("\n %d \n %d \n %d", ano, mes, dia);
 
 
 
-//#include <math.h>
+
 
 int raio;
 printf ("digite um valor: ");
@@ -275,3 +274,4 @@ printf ("a distancia entre os pontos é: %f", distancia);
 
 
 return 0;
+}
