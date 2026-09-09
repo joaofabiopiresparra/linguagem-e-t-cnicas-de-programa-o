@@ -5,30 +5,50 @@
 int main(int argc, char *argv[]) {
 
 
-// exercicio 1
-	
-	int a,b;
-	printf("escreva dois numeros: \n");
-	scanf ("%d", &a);
-	scanf ("%d", &b);
-	printf ("numeros invertidos: %d  %d\n", b, a);
+int op, op2, op3;
+printf ("qual lista de exercicio você quer acessar? [1]/[2]: ");
+scanf("%d", &op);
 
-		
+switch(op){
+
+		case 1:
+        printf ("qual exercicio você quer acessar? 1/2/3/4/5/6/7/8: ");
+        scanf("%d", &op2);
+	switch(op2){
+
+
+		case 1:
+
+
+		// exercicio 1
 	
-	//exercicio 2 
+		int a,b;
+		printf("escreva dois numeros: \n");
+		scanf ("%d", &a);
+		scanf ("%d", &b);
+		printf ("numeros invertidos: %d  %d\n", b, a);
+
+		break;
+	
+	
+	
+
+
+		case 2:
+		//exercicio 2 
 	
 	
 	
 	
 	
-	int expoente;
-	double c;
-	printf ("\ninsira um numero: ");
-	scanf ("%lf", &c);
-	if (c >= 10) {
-		while (c >= 10) {
-			c = c/10;
-			expoente++;
+		int expoente;
+		double c;
+		printf ("\ninsira um numero: ");
+		scanf ("%lf", &c);
+		if (c >= 10) {
+			while (c >= 10) {
+				c = c/10;
+				expoente++;
 		}
 	};
 	if (c < 1) {
@@ -40,13 +60,13 @@ int main(int argc, char *argv[]) {
 	printf("notação cientifica do numero: %lf * 10^%d", c, expoente);
 	
 	
+	break;
 	
 	
 	
 	
 	
-	
-	
+	case 3:
 	
 	//exercicio 3
 	
@@ -66,7 +86,9 @@ int main(int argc, char *argv[]) {
 	
 
 
-	
+break;
+
+case 4:
 
 
 	//exercicio 4
@@ -85,7 +107,10 @@ salario = salario + vendas*0.15;
 printf ("%f", salario);
 
 
+break;
 
+
+case 5:
 
 
 //exercicio 5
@@ -108,7 +133,10 @@ calculo = valor1*valor2*valor3;
 printf ("produto: %d\n", calculo);
 
 
+break;
 
+
+case 6:
 
 //exercicio 6
 
@@ -128,7 +156,10 @@ dia = idade % 30;
 printf ("\n %d \n %d \n %d", ano, mes, dia);
 
 
+break;
 
+
+case 7:
 
 
 
@@ -150,7 +181,9 @@ printf ("o volume de uma esfera é: %d", raio);
 
 
 
+break;
 
+case 8:
 
 
 // exercicio 8
@@ -170,16 +203,22 @@ distancia = sqrt(pow(x1-x2, 2)+pow(y1-y2, 2));
 printf ("a distancia entre os pontos é: %f", distancia);
 
 
+break;
+
+}
 
 
-
-
+case 2:
 //lista 2
 //exercicio 1
 
+printf ("qual exercicio você quer acessar? 1/2/3/4/5/6/7/8: ");
+scanf("%d", &op3);
+
+switch(op3){
 
 
-
+case 1:
 
 	int idade1;
 	printf ("digite sua idade: ");
@@ -187,7 +226,10 @@ printf ("a distancia entre os pontos é: %f", distancia);
 	idade1 = 2026 - idade1;
 	printf ("vc nasceu em %d", idade1);
 
+break;
 
+
+case 2:
 
 
 
@@ -204,7 +246,9 @@ printf ("a distancia entre os pontos é: %f", distancia);
 	velocidade = velocidade / 36;
 	printf("sua velocidade em metros por segundo e %f", velocidade);
 
+break;
 
+case 3:
 
 //exercicio 3
 
@@ -215,6 +259,11 @@ printf ("a distancia entre os pontos é: %f", distancia);
 	scanf("%f %f", &dinheiro, &cota);
 	printf("os %d reais sao %d em dolares", dinheiro, (dinheiro/cota));
 
+
+break;
+
+
+case 4:
 
 //exercicio 4
 
@@ -229,7 +278,13 @@ printf ("a distancia entre os pontos é: %f", distancia);
 	printf("temperatura e fahrenheit: %f", celcius);
 
 
+break;
 
+
+
+
+
+case 5:
 
 
 
@@ -245,7 +300,10 @@ printf ("a distancia entre os pontos é: %f", distancia);
 	printf("o angulo em radianos e: %f", graus);
 
 
+break;
 
+
+case 6:
 
 
 
@@ -256,10 +314,19 @@ printf ("a distancia entre os pontos é: %f", distancia);
 	scanf("%d", &numero5);
 	printf("o sucesor e %d e o antecesor e %d", (numero5+1), (numero5-1));
 
+break;
+
+case 7:
+
 //exercicio 7
 
 	int umvalorae = 780000;
 	printf("o premio de 780.000 reais sera dividido por 3 vencedores: \n\n o vencedor 1 ganhou: %f \n\n o vencedor 2 ganhou: %f \n\n e o vencedor 3 ganhou: %f", (umvalorae* 0.46), (umvalorae* 0.32), (umvalorae* 0.22));
+
+break;
+
+case 8:
+
 
 //exercicio 8
 
@@ -270,8 +337,11 @@ printf ("a distancia entre os pontos é: %f", distancia);
 	min = (sec - (horas*3600)) /60;
 	sec = sec - ((horas*3600) + (min*60));
 	printf("\t %d %d %d", horas, min, sec);
+break;
+
+}
 
 
-
+}
 return 0;
 }
