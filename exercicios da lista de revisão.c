@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <stdlib.h>                      // não funcionando
+#include <stdlib.h>
 	
 int multDigito( int dig, int valor){
 	return dig*valor;
