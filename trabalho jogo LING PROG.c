@@ -1,21 +1,31 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define LINHAS 5     // tamanho do level
-#define COLUNAS 11
+#define LINHAS 15     // tamanho do level
+#define COLUNAS 31
 
 int main() {
 	//level desing
     char mapa[LINHAS][COLUNAS] = {
-        "##########",
-        "#@.......#",
-        "#........#",
-        "#.......D#",
-        "##########"
+        "##############################",
+        "#                 #          #",
+        "#   ###########   #   #####  #",
+        "#     # S#        #   #   #  #",
+        "#  #  #  #        #       #  #",
+        "#  ####  #        #########  #",
+        "#        #                   #",
+        "##########                   #",
+        "#            #########  #    #",
+        "#            #          #    #",
+        "#        #####  @    ####### #",
+        "#    ##  #              #    #",
+        "#    ##  #  #######     #    #",
+        "#                            #",
+        "##############################"
     };
 
-    int jogador_x = 1;      //variavel de posicao vertical
-    int jogador_y = 1;      //variavel de posicao horisontal
+    int jogador_x = 10;      //variavel de posicao vertical
+    int jogador_y = 16;      //variavel de posicao horisontal
     char comando;           //variavel para receber o comando de movimentacao
     int jogando = 1;        //variavel para definicao de nivel
     int novo_x;             //variavel de nova posicao vertical
@@ -23,7 +33,23 @@ int main() {
     int i;                  //variavel para "desenhar" o mapa/level vertical
     int j;                  //variavel para "desenhar" o mapa/level horisontal
 
-    while (jogando) {
+	printf("                 ______   _____   _____   ______     _   __  ____ _    __  ______   __ \n"   
+		"	        / ____/  / ___/  / ___/  / ____/    / | / / /  _/| |  / / / ____/  / / \n "  
+		"	       / __/     /__ /   /__ /   / __/     /  |/ /  / /  | | / / / __/    / / \n  "  
+		"	      / /___    ___/ /  ___/ /  / /___    / /|  / _/ /   | |/ / / /___   / /___ \n  "
+		"	     /_____/   /____/  /____/  /_____/   /_/ |_/ /___/   |___/ /_____/  /_____/ \n\n\n  "
+
+
+		"	         ____    ______      _   __  ____ _    __  ____          ___ \n"
+		"	        / __ /  / ____/     / | / / / __ / |  / / / __ /        /__ | \n"
+		"	       / / / / / __/       /  |/ / / / / / | / / / / / /         / _/   \n" 
+		"	      / /_/ / / /___      / /|  / / /_/ /| |/ / / /_/ /         /_/     \n " 
+		"	     /_____/ /_____/     /_/ |_/  /____/ |___/  /____/         (_) "
+	);
+		
+	printf("\n\n\n\t[1] JOGAR! \n\t[2] MENU DE NIVEIS \n\t[3] CREDITOS");
+
+    /*while (jogando = 1) {
         system("cls || clear");  //limpa a tela (tanto no windows quanto no linux/mac)
 
         printf("\t=== ESSE NIVEL DE NOVO ===\n"); // titulo do jogo
@@ -54,12 +80,12 @@ int main() {
         if (comando == 'q' || comando == 'Q') jogando = 0;   // sai do jogo
 
         if (mapa[novo_x][novo_y] != '#') {            //verifica se a proxima "movimentacao" nao e uma parede
-            mapa[jogador_x][jogador_y] = '.';         //apaga a antiga posicao do jogador
+            mapa[jogador_x][jogador_y] = ' ';         //apaga a antiga posicao do jogador
             jogador_x = novo_x;                       //(faz as variaveis de "movimentacao" antigas virarem as novas
             jogador_y = novo_y;                       //serve para estabelecer a nova posicao do jogador)
             mapa[jogador_x][jogador_y] = '@';         //desenha a posicao atual do jogador
         }
-    }
+    }*/
 
     return 0;
 }
