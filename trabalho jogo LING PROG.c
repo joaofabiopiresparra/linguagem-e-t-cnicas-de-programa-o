@@ -60,8 +60,7 @@ int main() {
 	void reiniciar_possisao(){
     	jogador_x = 10;
     	jogador_y = 16;
-    	novo_x = 1;
-    	novo_y = 1;
+		mapa[novo_x][novo_y] = ' ';
     	mapa [3][8] = 'S';
     	mapa [10][16] = '@';
 	}
