@@ -48,8 +48,8 @@ int main() {
     int jogador_y = 16;      //variavel de posicao horisontal
     char comando;           //variavel para receber o comando de movimentacao
     int jogando = 0;        //variavel para definicao de nivel
-    int novo_x;             //variavel de nova posicao vertical
-    int novo_y;             //variavel de nova posicao vertical
+    int novo_x = jogador_x;             //variavel de nova posicao vertical
+    int novo_y = jogador_y;             //variavel de nova posicao vertical
     int i;                  //variavel para "desenhar" o mapa/level vertical
     int j;                  //variavel para "desenhar" o mapa/level horisontal
 	char opcao;
