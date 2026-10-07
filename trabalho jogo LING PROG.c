@@ -56,10 +56,10 @@ int main() {
 	int jgnd = 0;
 	char noob;
 	int voce_realmente_le_o_nome_das_variaveis_uau;
-	int porta_trancada = 1;
 	char senha_correta[5] = {'s', 'e', 'n', 'h', 'a'}; 
 	char senha_digitada[5]; 
-	int senha_valida = 1; 
+	int senha_valida = 1;
+	int porta_trancada = 1;
 
 	void reiniciar_possisao(){
     	jogador_x = 10;
@@ -277,6 +277,8 @@ int main() {
 				for(i=10;i<18;i++){
 					mapa[5][i]=' ';
 				}
+				senha_valida = 1;
+				porta_trancada = 1;
 				break;
         	}
 	
@@ -286,7 +288,7 @@ int main() {
 	        novo_x = jogador_x;
 	        novo_y = jogador_y;
 	
-	        if (comando == 'w' || comando == 'W') novo_x--;
+	        if (comando == 'w' || comando == 'W') novo_x--; // adfujbhgiufdabvuifjdnbviujerqbnajçdacvnb~dag[aegfd[[´]~~;./;[´p-=0#&%$$(&*¨&)(
 	        if (comando == 's' || comando == 'S') novo_x++;
 	        if (comando == 'a' || comando == 'A') novo_y--;
 	        if (comando == 'd' || comando == 'D') novo_y++;
@@ -294,6 +296,8 @@ int main() {
 	        	for(i=10;i<18;i++){
 					mapa[5][i]=' ';
 				}
+				senha_valida = 1;
+				porta_trancada = 1;
 				break;
 			}
 	
