@@ -56,6 +56,10 @@ int main() {
 	int jgnd = 0;
 	char noob;
 	int voce_realmente_le_o_nome_das_variaveis_uau;
+	int porta_trancada = 1;
+	char senha_correta[5] = {'s', 'e', 'n', 'h', 'a'}; 
+	char senha_digitada[5]; 
+	int senha_valida = 1; 
 
 	void reiniciar_possisao(){
     	jogador_x = 10;
@@ -136,8 +140,9 @@ int main() {
         	
         	    if (jogador_x == 12 && jogador_y == 23) {
         	    	system("cls || clear");
-            		printf("\n\n\n\tPARABENS! Voce passou de fase!");
-            		Sleep(3000);
+            		printf("\n\n\n\tPARABENS! Voce passou de fase!\n");
+            		printf("\n\tAperte [ENTER] para continuar...");
+	            	getchar(); getchar(); 
             		noob = '2';
             		jogando = 1;
             		jgnd = 1;
@@ -187,12 +192,13 @@ int main() {
             	mapa[jogador_x][jogador_y] = '@';         //desenha a posicao atual do jogador
         	}
         	
-        	        	if (jogador_x == 3 && jogador_y == 8) {
-            			system("cls || clear");
-            			printf("\n\n\n\tPARABENS! Voce passou de fase!");
-            			Sleep(3000);                                       //verifica a vitoria
-            			jogando = 2;
-						break;
+        	if (jogador_x == 3 && jogador_y == 8) {
+            	system("cls || clear");
+            	printf("\n\n\n\tPARABENS! Voce passou de fase!\n");
+            	printf("\n\tAperte [ENTER] para continuar...");
+	            getchar(); getchar();                                        //verifica a vitoria
+            	jogando = 2;
+				break;
         	}
     	}
     	
@@ -214,9 +220,10 @@ int main() {
 
         	if (jogador_x == 3 && jogador_y == 8) {
             	system("cls || clear");
-            	printf("\n\n\n\tPARABENS! Voce passou de fase!");
-            	Sleep(3000);
-            	jogando = 2;
+            	printf("\n\n\n\tPARABENS! Voce passou de fase!\n");
+            	printf("\n\tAperte [ENTER] para continuar...");
+	            getchar(); getchar(); 
+            	jogando = 3;
 				break;
         	}
 
@@ -239,17 +246,103 @@ int main() {
             	mapa[jogador_x][jogador_y] = '@';
         	}
 		}
-    
+		
+		reiniciar_possisao();
+		if (jogando == 3){
+	    	for(i=10;i<18;i++){
+				mapa[5][i]='P';
+			}
+		}
 	
+	    while (jogando == 3) {
+			
+	        system("cls || clear"); 
+	
+	        printf("\t=== ESSE NIVEL DE NOVO ? ===\n\n");
+	        printf("\n\nNivel 3: (SSS) Senha Super Secreta\n\n");
+	        
+	        for (i = 0; i < LINHAS; i++) {
+	            for (j = 0; j < COLUNAS - 1; j++) {
+	                printf("%c", mapa[i][j]);
+	            }
+	            printf("\n");
+	        }
+	
+	        if (jogador_x == 3 && jogador_y == 8) {
+            	system("cls || clear");
+            	printf("\n\n\n\tPARABENS! Voce passou de fase!\n");
+            	printf("\n\tAperte [ENTER] para continuar...");
+	            getchar(); getchar(); 
+            	jogando = 4;
+				for(i=10;i<18;i++){
+					mapa[5][i]=' ';
+				}
+				break;
+        	}
+	
+	        printf("\nProximo passo: ");
+	        scanf(" %c", &comando);
+	
+	        novo_x = jogador_x;
+	        novo_y = jogador_y;
+	
+	        if (comando == 'w' || comando == 'W') novo_x--;
+	        if (comando == 's' || comando == 'S') novo_x++;
+	        if (comando == 'a' || comando == 'A') novo_y--;
+	        if (comando == 'd' || comando == 'D') novo_y++;
+	        if (comando == 'q' || comando == 'Q'){
+	        	for(i=10;i<18;i++){
+					mapa[5][i]=' ';
+				}
+				break;
+			}
+	
+	        if (mapa[novo_x][novo_y] == 'P' && porta_trancada == 1) {
+	            printf("\nDigite a senha: \n");
+	
+	            for (i = 0; i < 5; i++) {                                            //HAHAHA aprendi isso durante a aula de HJ (07/10/2026) muito foda
+	                scanf(" %c", &senha_digitada[i]);                               //veio a calhar no momento certo pra fazer esse nivel
+	            }
+	
+	            for (i = 0; i < 5; i++) {
+	                if (senha_digitada[i] != senha_correta[i]) {
+	                    senha_valida = 0;
+	                }
+	            }
+	
+	            if (senha_valida == 1) {
+	                printf("\nBOA! A porta se abriu!\n");                          //...ok, ok "aprendi" e uma palavha muito forte afinal eu ja vinha usando o for faz um tempo
+	                porta_trancada = 0;                                            //MAS eu tive essa ideia por causa da explicacao do prof do for entao conta
+	                mapa[novo_x][novo_y] = ' '; 
+	                printf("Aperte [ENTER] para continuar...");
+	                getchar(); getchar(); 
+	            } else {
+	                printf("\nERROOUUU, tente novamente.\n"); 
+	                printf("Aperte [ENTER] para continuar...");
+	                getchar(); getchar();
+	            }// ^^^^^^^^ um novo truque que eu aprendi pra minha colecao hehehe
+	            
+	            continue; 
+	        }
+	
+	        if (mapa[novo_x][novo_y] != '#') {
+	            mapa[jogador_x][jogador_y] = ' '; 
+	            jogador_x = novo_x;
+	            jogador_y = novo_y;
+	            mapa[jogador_x][jogador_y] = '@'; 
+	        }
+	    }
+
     break;
     
     case '2':
     
 		system("cls || clear");
-    	printf("\n\n\tSelecao de niveis:\n\t[1]Nivel 1: Bem Simple\n\t[2]Nivel 2: Confuso?\n\ndigite uma opcao valida: ");
+    	printf("\n\n\tSelecao de niveis:\n\t[1]Nivel 1: Bem Simple\n\t[2]Nivel 2: Confuso?\n\t[3]Nivel 3: (SSS) Senha Super Secreta\n\ndigite uma opcao valida: ");
     	scanf("%d", &voce_realmente_le_o_nome_das_variaveis_uau);
     	if (voce_realmente_le_o_nome_das_variaveis_uau == 1) {jogando = 1; jgnd = 1; break;}
     	if (voce_realmente_le_o_nome_das_variaveis_uau == 2) {jogando = 2; jgnd = 1; break;}
+    	if (voce_realmente_le_o_nome_das_variaveis_uau == 3) {jogando = 3; jgnd = 1; break;}
     	if (voce_realmente_le_o_nome_das_variaveis_uau == 401){
     		system("cls || clear");
     		printf("\n\n\t      . - - - - - - .    \n"
@@ -272,8 +365,9 @@ int main() {
     	
     case '3':
     	system("cls || clear");
-    	printf("\n\n\n\tCreditos\n\n\tCriadores:\n\n\tJoao Fabio Pires Parra (MootStarling401)\n\n\tArthur da Silva Mota\n\n\tLucas Masaki Sversuti");
-    	Sleep(5000);
+    	printf("\n\n\n\tCreditos\n\n\tCriadores:\n\n\tJoao Fabio Pires Parra (MootStarling401)\n\n\tArthur da Silva Mota\n\n\tLucas Masaki Sversuti\n");
+        printf("\n\tAperte [ENTER] para continuar...");
+	    getchar(); getchar(); 
     	break;
     	
 	}
