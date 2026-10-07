@@ -352,8 +352,8 @@ int main() {
     		printf("\n\n\t      . - - - - - - .    \n"
    		"\t . '                   ' .    \n"
  		"\t.                         .  \n"
- 		"\t.     ( O )     ( O )     .  \n"
-        "\t.                         .  \n"
+ 		"\t.     ( O )     ( O )     .  \n"                          //tem um bug do nivel 3 mas ta tarde e eu nao vou arrumar fica pro Moot do futuro resolver
+        "\t.                         .  \n"                          //Moot do futuro: MA QUE PORRA?
  		"\t.                         .  \n"
  		"\t.                         .  \n"
  		"\t.   |                 |   .  \n"
