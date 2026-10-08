@@ -288,7 +288,7 @@ int main() {
 	        novo_x = jogador_x;
 	        novo_y = jogador_y;
 	
-	        if (comando == 'w' || comando == 'W') novo_x--; // adfujbhgiufdabvuifjdnbviujerqbnajçdacvnb~dag[aegfd[[´]~~;./;[´p-=0#&%$$(&*¨&)(
+	        if (comando == 'w' || comando == 'W') novo_x--;
 	        if (comando == 's' || comando == 'S') novo_x++;
 	        if (comando == 'a' || comando == 'A') novo_y--;
 	        if (comando == 'd' || comando == 'D') novo_y++;
@@ -304,8 +304,8 @@ int main() {
 	        if (mapa[novo_x][novo_y] == 'P' && porta_trancada == 1) {
 	            printf("\nDigite a senha: \n");
 	
-	            for (i = 0; i < 5; i++) {                                            //HAHAHA aprendi isso durante a aula de HJ (07/10/2026) muito foda
-	                scanf(" %c", &senha_digitada[i]);                               //veio a calhar no momento certo pra fazer esse nivel
+	            for (i = 0; i < 5; i++) {
+	                scanf(" %c", &senha_digitada[i]);
 	            }
 	
 	            for (i = 0; i < 5; i++) {
@@ -315,16 +315,19 @@ int main() {
 	            }
 	
 	            if (senha_valida == 1) {
-	                printf("\nBOA! A porta se abriu!\n");                          //...ok, ok "aprendi" e uma palavha muito forte afinal eu ja vinha usando o for faz um tempo
-	                porta_trancada = 0;                                            //MAS eu tive essa ideia por causa da explicacao do prof do for entao conta
-	                mapa[novo_x][novo_y] = ' '; 
+	                printf("\nBOA! A porta se abriu!\n");
+	                porta_trancada = 0;
+	                for(i=10;i<18;i++){
+						mapa[5][i]=' ';
+					} 
 	                printf("Aperte [ENTER] para continuar...");
 	                getchar(); getchar(); 
 	            } else {
 	                printf("\nERROOUUU, tente novamente.\n"); 
 	                printf("Aperte [ENTER] para continuar...");
+	                senha_valida = 1;
 	                getchar(); getchar();
-	            }// ^^^^^^^^ um novo truque que eu aprendi pra minha colecao hehehe
+	            }
 	            
 	            continue; 
 	        }
@@ -352,8 +355,8 @@ int main() {
     		printf("\n\n\t      . - - - - - - .    \n"
    		"\t . '                   ' .    \n"
  		"\t.                         .  \n"
- 		"\t.     ( O )     ( O )     .  \n"                          //tem um bug do nivel 3 mas ta tarde e eu nao vou arrumar fica pro Moot do futuro resolver
-        "\t.                         .  \n"                          //Moot do futuro: MA QUE PORRA?
+ 		"\t.     ( O )     ( O )     .  \n"
+        "\t.                         .  \n"
  		"\t.                         .  \n"
  		"\t.                         .  \n"
  		"\t.   |                 |   .  \n"
