@@ -302,7 +302,7 @@ int main() {
 			}
 	
 	        if (mapa[novo_x][novo_y] == 'P' && porta_trancada == 1) {
-	            printf("\nDigite a senha: \n");
+	            printf("\nDigite senha: \n");
 	
 	            for (i = 0; i < 5; i++) {
 	                scanf(" %c", &senha_digitada[i]);
