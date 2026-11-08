@@ -3,12 +3,15 @@
 #include <windows.h> // biblioteca para poder fazer um timer
 #include <unistd.h>  // mesma coisa so que pra linux
 #include <conio.h>//_getch()
+#include <time.h>
 
 #define LINHAS 15     // tamanho do level
 #define COLUNAS 31
 
 
 int main() {
+	srand((unsigned int)time(NULL));
+
 	//level desing
     char mapa[LINHAS][COLUNAS] = {
         "##############################",
@@ -82,6 +85,49 @@ int main() {
 		"##############################"
 	};
 
+	char mapa_giratorio_base[LINHAS][LINHAS + 1] = {
+		"###############",
+		"#             #",
+		"#     #       #",
+		"#     #       #",
+		"#             #",
+		"# ########### #",
+		"#             #",
+		"#       #     #",
+		"#       #     #",
+		"#             #",
+		"# ##########  #",
+		"#             #",
+		"#     #       #",
+		"#           S #",
+		"###############"
+	};
+	char mapa_giratorio[LINHAS][LINHAS];
+	char mapa_giratorio_aux[LINHAS][LINHAS];
+	int jogador_giratorio_x = 1;
+	int jogador_giratorio_y = 1;
+	int giro;
+	char mapa_invertido[LINHAS][LINHAS + 1] = {
+		"###############",
+		"#             #",
+		"# #####       #",
+		"#     #       #",
+		"##### # ##### #",
+		"#     #     # #",
+		"# ####### # # #",
+		"#       # #   #",
+		"##### # # ### #",
+		"#     # #     #",
+		"# ##### ##### #",
+		"#             #",
+		"# ########### #",
+		"#           S #",
+		"###############"
+	};
+	int jogador_invertido_x = 1;
+	int jogador_invertido_y = 1;
+	int inverter_comandos = 0;
+
     int jogador_x = 10;      //variavel de posicao vertical
     int jogador_y = 16;      //variavel de posicao horisontal
     char comando;           //variavel para receber o comando de movimentacao
@@ -112,7 +158,6 @@ int main() {
 
 
 	do{
-	
 
 	printf("                 ______   _____   _____   ______     _   __  ____ _    __  ______   __ \n"   
 		"	        / ____/  / ___/  / ___/  / ____/    / | / / /  _/| |  / / / ____/  / / \n "  
@@ -197,7 +242,7 @@ int main() {
 				jogando = 1;
 			}
 		}
-
+		
 		reiniciar_possisao();
 
     	while (jogando == 1) {
@@ -481,7 +526,7 @@ int main() {
 							
 							if(escada==1){
 								andar=2;
-								jogador_x=6; //posição que o @ aparece no 2º andar
+								jogador_x=6; //posiÃ§Ã£o que o @ aparece no 2Âº andar
 								jogador_y=2;
 								continue;
 							}
@@ -666,7 +711,7 @@ int main() {
 							
 							if(escada==1){
 								andar=2;
-								jogador_x=6; //posição que o @ aparece no 2º andar
+								jogador_x=6; //posiÃ§Ã£o que o @ aparece no 2Âº andar
 								jogador_y=2;
 								continue;
 							}
@@ -878,7 +923,7 @@ int main() {
 				        jogador_y = novo_y;
 				    }
 				
-				    else if (andar_pedra2 == 1 && novo_x == blocox2 && novo_y == blocoy2) {  //evitar colisão
+				    else if (andar_pedra2 == 1 && novo_x == blocox2 && novo_y == blocoy2) {  //evitar colisÃ£o
 				
 				        movx = blocox2 + (novo_x - jogador_x);
 				        movy = blocoy2 + (novo_y - jogador_y);
@@ -998,24 +1043,187 @@ int main() {
             	system("cls || clear");
             	printf("\n\n\n\tPARABENS! Voce passou de fase!\n");
             	printf("\n\tAperte [ENTER] para continuar...");
-	            getchar(); getchar(); 
+	            _getch(); _getch(); 
             	jogando = 7;
 				break;
         	}
 				
 }
+////////////////////////////////////////////////////////lucas///////////////////////////////////////////////////////////////////////////////////////////////////////
 
+fase7:
+	if (jogando == 7) {
+		for (i = 0; i < LINHAS; i++) {
+			for (j = 0; j < LINHAS; j++) {
+				mapa_giratorio[i][j] = mapa_giratorio_base[i][j];
+			}
+		}
+		jogador_giratorio_x = 1;
+		jogador_giratorio_y = 1;
 
-    break;
+		while (jogando == 7) {
+			system("cls || clear");
+			printf("\n\nNivel 7: Labirinto Giratorio\n");
+			printf("\n\nUse as teclas [W] [A] [S] [D] para se movimentar e [Q] para sair do jogo.\n");
+
+			for (i = 0; i < LINHAS; i++) {
+				for (j = 0; j < LINHAS; j++) {
+					if (i == jogador_giratorio_x && j == jogador_giratorio_y) {
+						printf("@");
+					} else {
+						printf("%c", mapa_giratorio[i][j]);
+					}
+				}
+				printf("\n");
+			}
+
+			printf("\nProximo passo: ");
+			comando = _getch();
+
+			if (comando == 'q' || comando == 'Q') {
+				jogando = 0;
+				break;
+			}
+
+			novo_x = jogador_giratorio_x;
+			novo_y = jogador_giratorio_y;
+			if (comando == 'w' || comando == 'W') novo_x--;
+			else if (comando == 's' || comando == 'S') novo_x++;
+			else if (comando == 'a' || comando == 'A') novo_y--;
+			else if (comando == 'd' || comando == 'D') novo_y++;
+
+			if (novo_x >= 0 && novo_x < LINHAS &&
+				novo_y >= 0 && novo_y < LINHAS &&
+				mapa_giratorio[novo_x][novo_y] != '#') {
+				jogador_giratorio_x = novo_x;
+				jogador_giratorio_y = novo_y;
+
+				if (mapa_giratorio[jogador_giratorio_x][jogador_giratorio_y] == 'S') {
+					system("cls || clear");
+					printf("\n\n\n\tPARABENS! Voce passou de fase!\n");
+					printf("\n\tAperte [ENTER] para continuar...");
+					_getch();
+					jogando = 8;
+					break;
+				}
+			}
+
+			giro = rand() % 3 + 1;
+			while (giro > 0) {
+				char temp[LINHAS][LINHAS];
+				for (i = 0; i < LINHAS; i++) {
+					for (j = 0; j < LINHAS; j++) {
+						temp[j][LINHAS - 1 - i] = mapa_giratorio[i][j];
+					}
+				}
+				for (i = 0; i < LINHAS; i++) {
+					for (j = 0; j < LINHAS; j++) {
+						mapa_giratorio[i][j] = temp[i][j];
+					}
+				}
+
+				novo_x = jogador_giratorio_y;
+				novo_y = LINHAS - 1 - jogador_giratorio_x;
+				jogador_giratorio_x = novo_x;
+				jogador_giratorio_y = novo_y;
+				giro--;
+			}
+		}
+	}
+fase8:
+	if (jogando == 8) {
+		jogador_invertido_x = 1;
+		jogador_invertido_y = 1;
+		inverter_comandos = 0;
+
+		while (jogando == 8) {
+			system("cls || clear");
+			printf("\n\nNivel 8: Comandos Invertidos\n");
+			printf("\n\nUse as teclas [W] [A] [S] [D] para se movimentar e [Q] para sair do jogo.\n");
+
+			for (i = 0; i < LINHAS; i++) {
+				for (j = 0; j < LINHAS; j++) {
+					if (i == jogador_invertido_x && j == jogador_invertido_y) {
+						printf("@");
+					} else {
+						printf("%c", mapa_invertido[i][j]);
+					}
+				}
+				printf("\n");
+			}
+
+			printf("\nProximo passo: ");
+			comando = _getch();
+
+			if (comando == 'q' || comando == 'Q') {
+				jogando = 0;
+				break;
+			}
+
+			novo_x = jogador_invertido_x;
+			novo_y = jogador_invertido_y;
+
+			if (comando != 'w' && comando != 'W' &&
+				comando != 'a' && comando != 'A' &&
+				comando != 's' && comando != 'S' &&
+				comando != 'd' && comando != 'D') {
+				continue;
+			}
+
+			if (inverter_comandos) {
+				if (comando == 'w' || comando == 'W') novo_x++;
+				else if (comando == 's' || comando == 'S') novo_x--;
+				else if (comando == 'a' || comando == 'A') novo_y++;
+				else if (comando == 'd' || comando == 'D') novo_y--;
+			} else {
+				if (comando == 'w' || comando == 'W') novo_x--;
+				else if (comando == 's' || comando == 'S') novo_x++;
+				else if (comando == 'a' || comando == 'A') novo_y--;
+				else if (comando == 'd' || comando == 'D') novo_y++;
+			}
+
+			inverter_comandos = !inverter_comandos;
+
+			if (novo_x >= 0 && novo_x < LINHAS &&
+				novo_y >= 0 && novo_y < LINHAS &&
+				mapa_invertido[novo_x][novo_y] != '#') {
+				jogador_invertido_x = novo_x;
+				jogador_invertido_y = novo_y;
+
+				if (mapa_invertido[jogador_invertido_x][jogador_invertido_y] == 'S') {
+					system("cls || clear");
+
+					printf("\n\n\n\tPARABENS! Voce passou de fase!\n");
+					printf("\n\tAperte [ENTER] para continuar...");
+					_getch();
+					jogando = 0;
+					break;
+				}
+			}
+		}
+	}
+		
+	reiniciar_possisao();
+	    break;
     
     case '2':
     
 		system("cls || clear");
-    	printf("\n\n\tSelecao de niveis:\n\t[1]Nivel 1: Bem Simple\n\t[2]Nivel 2: Confuso?\n\t[3]Nivel 3: (SSS) Senha Super Secreta\n\ndigite uma opcao valida: ");
+    	printf("\n\n\tSelecao de niveis:\n\t[1]Nivel 1: Bem Simple\n\t[2]Nivel 2: Confuso?\n\t[3]Nivel 3: (SSS) Senha Super Secreta\n\t[7]Nivel 7: Labirinto Giratorio\n\t[8]Nivel 8: Comandos Invertidos\n\ndigite uma opcao valida: ");
     	scanf("%d", &voce_realmente_le_o_nome_das_variaveis_uau);
     	if (voce_realmente_le_o_nome_das_variaveis_uau == 1) {jogando = 1; jgnd = 1; break;}
     	if (voce_realmente_le_o_nome_das_variaveis_uau == 2) {jogando = 2; jgnd = 1; break;}
     	if (voce_realmente_le_o_nome_das_variaveis_uau == 3) {jogando = 3; jgnd = 1; break;}
+    	if (voce_realmente_le_o_nome_das_variaveis_uau == 7) {
+			jogando = 7;
+			jgnd = 1;
+			goto fase7;
+		}
+    	if (voce_realmente_le_o_nome_das_variaveis_uau == 8) {
+			jogando = 8;
+			jgnd = 1;
+			goto fase8;
+		}
     	if (voce_realmente_le_o_nome_das_variaveis_uau == 401){
     		system("cls || clear");
     		printf("\n\n\t      . - - - - - - .    \n"
@@ -1040,10 +1248,11 @@ int main() {
     	system("cls || clear");
     	printf("\n\n\n\tCreditos\n\n\tCriadores:\n\n\tJoao Fabio Pires Parra (MootStarling401)\n\n\tArthur da Silva Mota\n\n\tLucas Masaki Sversuti\n");
         printf("\n\tAperte [ENTER] para continuar...");
-	    getchar(); getchar(); 
+	    _getch(); _getch(); 
     	break;
     	
 	}
+
 	system("cls || clear");
 } while (opcao != '4');
 
