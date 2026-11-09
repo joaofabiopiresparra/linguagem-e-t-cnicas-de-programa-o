@@ -1209,21 +1209,14 @@ fase8:
     case '2':
     
 		system("cls || clear");
-    	printf("\n\n\tSelecao de niveis:\n\t[1]Nivel 1: Bem Simple\n\t[2]Nivel 2: Confuso?\n\t[3]Nivel 3: (SSS) Senha Super Secreta\n\t[7]Nivel 7: Labirinto Giratorio\n\t[8]Nivel 8: Comandos Invertidos\n\ndigite uma opcao valida: ");
+    	printf("\n\n\tSelecao de niveis:\n\t[1]Nivel 1: Bem Simple\n\t[2]Nivel 2: Confuso?\n\t[3]Nivel 3: (SSS) Senha Super Secreta\n\t[7]Nivel 7: Labirinto Giratorio\n\t[8]Nivel 8: Comando Maluco\n\ndigite uma opcao valida: ");
     	scanf("%d", &voce_realmente_le_o_nome_das_variaveis_uau);
     	if (voce_realmente_le_o_nome_das_variaveis_uau == 1) {jogando = 1; jgnd = 1; break;}
     	if (voce_realmente_le_o_nome_das_variaveis_uau == 2) {jogando = 2; jgnd = 1; break;}
     	if (voce_realmente_le_o_nome_das_variaveis_uau == 3) {jogando = 3; jgnd = 1; break;}
-    	if (voce_realmente_le_o_nome_das_variaveis_uau == 7) {
-			jogando = 7;
-			jgnd = 1;
-			goto fase7;
-		}
-    	if (voce_realmente_le_o_nome_das_variaveis_uau == 8) {
-			jogando = 8;
-			jgnd = 1;
-			goto fase8;
-		}
+    	if (voce_realmente_le_o_nome_das_variaveis_uau == 7) {jogando = 7; jgnd = 1; break;}
+    	if (voce_realmente_le_o_nome_das_variaveis_uau == 8) {jogando = 8; jgnd = 1; break;}
+		
     	if (voce_realmente_le_o_nome_das_variaveis_uau == 401){
     		system("cls || clear");
     		printf("\n\n\t      . - - - - - - .    \n"
