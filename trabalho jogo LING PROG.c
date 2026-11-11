@@ -3,14 +3,12 @@
 #include <windows.h> // biblioteca para poder fazer um timer
 #include <unistd.h>  // mesma coisa so que pra linux
 #include <conio.h>//_getch()
-#include <time.h>
 
 #define LINHAS 15     // tamanho do level
 #define COLUNAS 31
 
 
 int main() {
-	srand((unsigned int)time(NULL));
 
 	//level desing
     char mapa[LINHAS][COLUNAS] = {
