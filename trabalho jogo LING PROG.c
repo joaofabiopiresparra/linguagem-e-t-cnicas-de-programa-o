@@ -121,8 +121,8 @@ int main() {
 		"#                            #",
 		"##############################"
 	};
-	int jogador_invertido_x = 1; // Linha atual do jogador na fase 8.
-	int jogador_invertido_y = 1; // Coluna atual do jogador na fase 8.
+	int jogador_invertido_x = 1; // 
+	int jogador_invertido_y = 1; // 
 	int inverter_comandos = 0; // 0 aplica o comando normal; 1 aplica o inverso.
 	char mapa_fase9_base[LINHAS][COLUNAS] = { 
 		"##############################",
