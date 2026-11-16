@@ -687,8 +687,7 @@ int main() {
     										mapa2[i][24] = ' ';} //apaga a barreira
 							        }
 							
-							        else if (mapa2[movx][movy] != '#' &&
-							                 mapa2[movx][movy] != 'P') {
+							        else if (mapa2[movx][movy] != '#' && mapa2[movx][movy] != 'P') {
 							
 							            blocox = movx;
 							            blocoy = movy;
@@ -715,7 +714,7 @@ int main() {
 							}
 				
 						}
-						if (mapa2[novo_x][novo_y] != '#') {
+						if (mapa2[novo_x][novo_y] != '#' && mapa2[novo_x][novo_y] != 'P') {
 			    		
 			    		jogador_x = novo_x;
 			    		jogador_y = novo_y;
