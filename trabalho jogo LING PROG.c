@@ -83,48 +83,68 @@ int main() {
 		"##############################"
 	};
 
-	char mapa_giratorio_base[LINHAS][LINHAS + 1] = {
-		"###############",
-		"#             #",
-		"#     #       #",
-		"#     #       #",
-		"#             #",
-		"# ########### #",
-		"#             #",
-		"#       #     #",
-		"#       #     #",
-		"#             #",
-		"# ##########  #",
-		"#             #",
-		"#     #       #",
-		"#           S #",
-		"###############"
+	char mapa_giratorio_base[LINHAS][COLUNAS] = { // Fase 7: # e parede, espaco e caminho, S e saida.
+		"##############################",
+		"#@                         #",
+		"# ### ## ### ### ### #      #",
+		"#   #    #   #   #   #      #",
+		"# # # ## # # # # # # #      #",
+		"# #   #  # # # # # # #      #",
+		"# ### # ## # # # # # #      #",
+		"#   # #    #   #   #        #",
+		"# # # #### ## ### ### ###  #",
+		"# #   #    #   #   #   #    #",
+		"# ### # ## # # ### # # #    #",
+		"#     #  # #   #   # #      #",
+		"# ### ## # #### ### # ###  S#",
+		"#                          #",
+		"##############################"
 	};
-	char mapa_giratorio[LINHAS][LINHAS];
-	char mapa_giratorio_aux[LINHAS][LINHAS];
-	int jogador_giratorio_x = 1;
-	int jogador_giratorio_y = 1;
-	int giro;
-	char mapa_invertido[LINHAS][LINHAS + 1] = {
-		"###############",
-		"#             #",
-		"# #####       #",
-		"#     #       #",
-		"##### # ##### #",
-		"#     #     # #",
-		"# ####### # # #",
-		"#       # #   #",
-		"##### # # ### #",
-		"#     # #     #",
-		"# ##### ##### #",
-		"#             #",
-		"# ########### #",
-		"#           S #",
-		"###############"
+	char mapa_giratorio[LINHAS][COLUNAS]; // Mapa da fase 7 que pode ser girado.
+	int jogador_giratorio_x = 1; // Linha atual do jogador na fase 7.
+	int jogador_giratorio_y = 1; // Coluna atual do jogador na fase 7.
+	int giro; // Quantidade de giros sorteada para cada movimento.
+	char mapa_invertido[LINHAS][COLUNAS] = { // Fase 8: paredes e passagens sao montadas ao iniciar.
+		"##############################",
+		"#@                          #",
+		"#                            #",
+		"#                            #",
+		"#                            #",
+		"#                            #",
+		"#                            #",
+		"#                            #",
+		"#                            #",
+		"#                            #",
+		"#                            #",
+		"#                            #",
+		"#                            #",
+		"#                            #",
+		"##############################"
 	};
-	int jogador_invertido_x = 1;
-	int jogador_invertido_y = 1;
-	int inverter_comandos = 0;
+	int jogador_invertido_x = 1; // Linha atual do jogador na fase 8.
+	int jogador_invertido_y = 1; // Coluna atual do jogador na fase 8.
+	int inverter_comandos = 0; // 0 aplica o comando normal; 1 aplica o inverso.
+	char mapa_fase9_base[LINHAS][COLUNAS] = { 
+		"##############################",
+		"#@                          #",
+		"#                            #",
+		"#                            #",
+		"#                            #",
+		"#                            #",
+		"#                            #",
+		"#                            #",
+		"#                            #",
+		"#                            #",
+		"#                            #",
+		"#                            #",
+		"#                            #",
+		"#                            #",
+		"##############################"
+	};
+	char mapa_fase9[LINHAS][COLUNAS]; 
+	int jogador_fase9_x = 1; 
+	int jogador_fase9_y = 1; 
+	int chaves_fase9 = 0; // Numero de chaves que o jogador ja coletou.
 
     int jogador_x = 10;      //variavel de posicao vertical
     int jogador_y = 16;      //variavel de posicao horisontal
@@ -687,7 +707,8 @@ int main() {
     										mapa2[i][24] = ' ';} //apaga a barreira
 							        }
 							
-							        else if (mapa2[movx][movy] != '#' && mapa2[movx][movy] != 'P') {
+							        else if (mapa2[movx][movy] != '#' &&
+							                 mapa2[movx][movy] != 'P') {
 							
 							            blocox = movx;
 							            blocoy = movy;
@@ -714,7 +735,7 @@ int main() {
 							}
 				
 						}
-						if (mapa2[novo_x][novo_y] != '#' && mapa2[novo_x][novo_y] != 'P') {
+						if (mapa2[novo_x][novo_y] != '#') {
 			    		
 			    		jogador_x = novo_x;
 			    		jogador_y = novo_y;
@@ -1047,24 +1068,39 @@ int main() {
 				
 }
 ////////////////////////////////////////////////////////lucas///////////////////////////////////////////////////////////////////////////////////////////////////////
+	reiniciar_possisao();
 
-fase7:
-	if (jogando == 7) {
-		for (i = 0; i < LINHAS; i++) {
-			for (j = 0; j < LINHAS; j++) {
+	if (jogando == 7) { // Inicia a fase 7 se ela foi selecionada.
+		for (i = 0; i < LINHAS; i++) { // Copia o mapa original para o mapa usado na partida.
+			for (j = 0; j < COLUNAS; j++) {
 				mapa_giratorio[i][j] = mapa_giratorio_base[i][j];
 			}
 		}
-		jogador_giratorio_x = 1;
+		for (i = 0; i < LINHAS; i++) { // Completa linhas curtas e remove @ do mapa fixo.
+			for (j = 0; j < COLUNAS - 1; j++) {
+				if (mapa_giratorio[i][j] == '\0') {
+					mapa_giratorio[i][j] = ' ';
+				} else if (mapa_giratorio[i][j] == '@') {
+					mapa_giratorio[i][j] = ' ';
+				}
+			}
+			mapa_giratorio[i][0] = '#';
+			mapa_giratorio[i][COLUNAS - 2] = '#';
+		}
+		for (j = 0; j < COLUNAS - 1; j++) { // Fecha as bordas superior e inferior.
+			mapa_giratorio[0][j] = '#';
+			mapa_giratorio[LINHAS - 1][j] = '#';
+		}
+		jogador_giratorio_x = 1; // Posicao inicial: linha 1.
 		jogador_giratorio_y = 1;
 
-		while (jogando == 7) {
+		while (jogando == 7) { // Continua ate vencer ou sair.
 			system("cls || clear");
 			printf("\n\nNivel 7: Labirinto Giratorio\n");
 			printf("\n\nUse as teclas [W] [A] [S] [D] para se movimentar e [Q] para sair do jogo.\n");
 
-			for (i = 0; i < LINHAS; i++) {
-				for (j = 0; j < LINHAS; j++) {
+			for (i = 0; i < LINHAS; i++) { // Desenha o mapa e sobrepoe @ ao jogador.
+				for (j = 0; j < COLUNAS - 1; j++) {
 					if (i == jogador_giratorio_x && j == jogador_giratorio_y) {
 						printf("@");
 					} else {
@@ -1075,27 +1111,27 @@ fase7:
 			}
 
 			printf("\nProximo passo: ");
-			comando = _getch();
+			comando = _getch(); // Le uma tecla sem precisar apertar Enter.
 
 			if (comando == 'q' || comando == 'Q') {
-				jogando = 0;
+				jogando = 0; // Encerra a partida.
 				break;
 			}
 
-			novo_x = jogador_giratorio_x;
+			novo_x = jogador_giratorio_x; // Calcula o destino a partir da posicao atual.
 			novo_y = jogador_giratorio_y;
-			if (comando == 'w' || comando == 'W') novo_x--;
+			if (comando == 'w' || comando == 'W') novo_x--; // W sobe; S desce.
 			else if (comando == 's' || comando == 'S') novo_x++;
-			else if (comando == 'a' || comando == 'A') novo_y--;
+			else if (comando == 'a' || comando == 'A') novo_y--; // A vai a esquerda; D vai a direita.
 			else if (comando == 'd' || comando == 'D') novo_y++;
 
-			if (novo_x >= 0 && novo_x < LINHAS &&
-				novo_y >= 0 && novo_y < LINHAS &&
+			if (novo_x >= 0 && novo_x < LINHAS && // Impede sair dos limites ou atravessar paredes.
+				novo_y >= 0 && novo_y < COLUNAS - 1 &&
 				mapa_giratorio[novo_x][novo_y] != '#') {
-				jogador_giratorio_x = novo_x;
+				jogador_giratorio_x = novo_x; // Confirma o movimento valido.
 				jogador_giratorio_y = novo_y;
 
-				if (mapa_giratorio[jogador_giratorio_x][jogador_giratorio_y] == 'S') {
+				if (mapa_giratorio[jogador_giratorio_x][jogador_giratorio_y] == 'S') { // S conclui a fase.
 					system("cls || clear");
 					printf("\n\n\n\tPARABENS! Voce passou de fase!\n");
 					printf("\n\tAperte [ENTER] para continuar...");
@@ -1105,41 +1141,70 @@ fase7:
 				}
 			}
 
-			giro = rand() % 3 + 1;
+			giro = rand() % 3 + 1; // Sorteia de 1 a 3 giros de 180 graus.
 			while (giro > 0) {
-				char temp[LINHAS][LINHAS];
+				char temp[LINHAS][COLUNAS]; // Guarda temporariamente o mapa transformado.
 				for (i = 0; i < LINHAS; i++) {
-					for (j = 0; j < LINHAS; j++) {
-						temp[j][LINHAS - 1 - i] = mapa_giratorio[i][j];
+					for (j = 0; j < COLUNAS - 1; j++) {
+						temp[LINHAS - 1 - i][COLUNAS - 2 - j] = mapa_giratorio[i][j]; // Vira linha e coluna.
 					}
 				}
-				for (i = 0; i < LINHAS; i++) {
-					for (j = 0; j < LINHAS; j++) {
+				for (i = 0; i < LINHAS; i++) { // Copia o mapa virado de volta.
+					for (j = 0; j < COLUNAS - 1; j++) {
 						mapa_giratorio[i][j] = temp[i][j];
 					}
+					mapa_giratorio[i][COLUNAS - 1] = '\0';
 				}
 
-				novo_x = jogador_giratorio_y;
-				novo_y = LINHAS - 1 - jogador_giratorio_x;
+				novo_x = LINHAS - 1 - jogador_giratorio_x; // Atualiza tambem a posicao do jogador.
+				novo_y = COLUNAS - 2 - jogador_giratorio_y;
 				jogador_giratorio_x = novo_x;
 				jogador_giratorio_y = novo_y;
-				giro--;
+				giro--; // Diminui um giro do total sorteado.
 			}
 		}
 	}
-fase8:
-	if (jogando == 8) {
-		jogador_invertido_x = 1;
+
+	reiniciar_possisao();
+
+	if (jogando == 8) { // Inicia a fase 8 se ela foi selecionada.
+		for (i = 0; i < LINHAS; i++) { // Preenche casas vazias e remove @ do mapa fixo.
+			for (j = 0; j < COLUNAS - 1; j++) {
+				if (mapa_invertido[i][j] == '\0') {
+					mapa_invertido[i][j] = ' ';
+				} else if (mapa_invertido[i][j] == '@') {
+					mapa_invertido[i][j] = ' ';
+				}
+			}
+			mapa_invertido[i][0] = '#';
+			mapa_invertido[i][COLUNAS - 2] = '#';
+		}
+		for (j = 0; j < COLUNAS - 1; j++) { // Fecha as bordas superior e inferior.
+			mapa_invertido[0][j] = '#';
+			mapa_invertido[LINHAS - 1][j] = '#';
+		}
+		for (i = 1; i < LINHAS - 1; i++) { // Cria paredes verticais entre os corredores.
+			for (j = 5; j <= 25; j += 5) {
+				mapa_invertido[i][j] = '#';
+			}
+		}
+		mapa_invertido[11][5] = ' '; // Abre passagens alternadas para formar um zigue-zague.
+		mapa_invertido[2][10] = ' ';
+		mapa_invertido[11][15] = ' ';
+		mapa_invertido[2][20] = ' ';
+		mapa_invertido[11][25] = ' ';
+		mapa_invertido[13][27] = 'S'; // Coloca a saida no fim do ultimo corredor.
+		jogador_invertido_x = 1; // Posicao inicial do jogador.
 		jogador_invertido_y = 1;
 		inverter_comandos = 0;
 
-		while (jogando == 8) {
+		while (jogando == 8) { // Continua ate vencer ou sair.
 			system("cls || clear");
 			printf("\n\nNivel 8: Comandos Invertidos\n");
 			printf("\n\nUse as teclas [W] [A] [S] [D] para se movimentar e [Q] para sair do jogo.\n");
 
-			for (i = 0; i < LINHAS; i++) {
-				for (j = 0; j < LINHAS; j++) {
+			for (i = 0; i < LINHAS; i++) { // Desenha o mapa com @ na posicao do jogador.
+				for (j = 0; j < COLUNAS - 1; j++) {
 					if (i == jogador_invertido_x && j == jogador_invertido_y) {
 						printf("@");
 					} else {
@@ -1150,25 +1215,25 @@ fase8:
 			}
 
 			printf("\nProximo passo: ");
-			comando = _getch();
+			comando = _getch(); // Le uma tecla sem esperar Enter.
 
 			if (comando == 'q' || comando == 'Q') {
-				jogando = 0;
+				jogando = 0; // Encerra o jogo.
 				break;
 			}
 
-			novo_x = jogador_invertido_x;
+			novo_x = jogador_invertido_x; // Calcula o destino a partir da posicao atual.
 			novo_y = jogador_invertido_y;
 
-			if (comando != 'w' && comando != 'W' &&
+			if (comando != 'w' && comando != 'W' && // Ignora teclas diferentes de W, A, S e D.
 				comando != 'a' && comando != 'A' &&
 				comando != 's' && comando != 'S' &&
 				comando != 'd' && comando != 'D') {
 				continue;
 			}
 
-			if (inverter_comandos) {
-				if (comando == 'w' || comando == 'W') novo_x++;
+			if (inverter_comandos) { // A cada turno, o comando pode agir ao contrario.
+				if (comando == 'w' || comando == 'W') novo_x++; // W/S e A/D trocam de direcao.
 				else if (comando == 's' || comando == 'S') novo_x--;
 				else if (comando == 'a' || comando == 'A') novo_y++;
 				else if (comando == 'd' || comando == 'D') novo_y--;
@@ -1179,23 +1244,137 @@ fase8:
 				else if (comando == 'd' || comando == 'D') novo_y++;
 			}
 
-			inverter_comandos = !inverter_comandos;
+			inverter_comandos = !inverter_comandos; // Alterna o modo para o proximo turno.
 
-			if (novo_x >= 0 && novo_x < LINHAS &&
-				novo_y >= 0 && novo_y < LINHAS &&
+			if (novo_x >= 0 && novo_x < LINHAS && // Bloqueia paredes e destinos fora do mapa.
+				novo_y >= 0 && novo_y < COLUNAS - 1 &&
 				mapa_invertido[novo_x][novo_y] != '#') {
-				jogador_invertido_x = novo_x;
+				jogador_invertido_x = novo_x; // Confirma o movimento valido.
 				jogador_invertido_y = novo_y;
 
-				if (mapa_invertido[jogador_invertido_x][jogador_invertido_y] == 'S') {
+				if (mapa_invertido[jogador_invertido_x][jogador_invertido_y] == 'S') { // S conclui a fase.
 					system("cls || clear");
 
 					printf("\n\n\n\tPARABENS! Voce passou de fase!\n");
 					printf("\n\tAperte [ENTER] para continuar...");
 					_getch();
-					jogando = 0;
+					jogando = 9;
 					break;
 				}
+			}
+		}
+	}
+
+	reiniciar_possisao();
+
+	if (jogando == 9) { // Inicia a fase 9 se ela foi selecionada.
+		for (i = 0; i < LINHAS; i++) { // Copia o mapa-base para iniciar uma partida limpa.
+			for (j = 0; j < COLUNAS; j++) {
+				mapa_fase9[i][j] = mapa_fase9_base[i][j];
+			}
+			for (j = 0; j < COLUNAS - 1; j++) { // Preenche casas vazias e remove @ do mapa.
+				if (mapa_fase9[i][j] == '\0' || mapa_fase9[i][j] == '@') {
+					mapa_fase9[i][j] = ' ';
+				}
+			}
+			mapa_fase9[i][0] = '#';
+			mapa_fase9[i][COLUNAS - 2] = '#';
+		}
+		for (j = 0; j < COLUNAS - 1; j++) { // Fecha as bordas superior e inferior.
+			mapa_fase9[0][j] = '#';
+			mapa_fase9[LINHAS - 1][j] = '#';
+		}
+
+		for (i = 2; i <= 12; i += 2) { // Cria barreiras horizontais nas linhas pares.
+			for (j = 1; j < COLUNAS - 2; j++) {
+				mapa_fase9[i][j] = '#';
+			}
+		}
+
+		mapa_fase9[2][2] = ' '; // Abre passagens em pontos diferentes do labirinto.
+		mapa_fase9[2][24] = ' ';
+		mapa_fase9[4][2] = ' ';
+		mapa_fase9[4][18] = ' ';
+		mapa_fase9[6][6] = ' ';
+		mapa_fase9[6][26] = ' ';
+		mapa_fase9[8][10] = ' ';
+		mapa_fase9[8][24] = ' ';
+		mapa_fase9[10][2] = ' ';
+		mapa_fase9[10][26] = ' ';
+		mapa_fase9[4][2] = 'C'; // Coloca as tres chaves nos corredores.
+		mapa_fase9[8][10] = 'C';
+		mapa_fase9[12][2] = 'C';
+		mapa_fase9[12][26] = 'P'; // A porta P protege a saida S.
+		mapa_fase9[12][27] = 'S';
+		mapa_fase9[12][28] = '#';
+		mapa_fase9[11][27] = '#';
+		mapa_fase9[13][27] = '#';
+		jogador_fase9_x = 1; // Reinicia o jogador no inicio do mapa.
+		jogador_fase9_y = 1;
+		chaves_fase9 = 0;
+
+		while (jogando == 9) { // Continua ate vencer ou sair.
+			system("cls || clear");
+			printf("\n\nNivel 9: O Cofre das Tres Chaves\n");
+			printf("\nUse [W] [A] [S] [D] para andar e [Q] para sair.\n");
+			printf("Chaves: %d/3\n\n", chaves_fase9);
+
+			for (i = 0; i < LINHAS; i++) { // Desenha o mapa e sobrepoe @ ao jogador.
+				for (j = 0; j < COLUNAS - 1; j++) {
+					if (i == jogador_fase9_x && j == jogador_fase9_y) {
+						printf("@");
+					} else {
+						printf("%c", mapa_fase9[i][j]);
+					}
+				}
+				printf("\n");
+			}
+
+			printf("\nProximo passo: ");
+			comando = _getch(); // Le uma tecla sem esperar Enter.
+
+			if (comando == 'q' || comando == 'Q') {
+				break;
+			}
+
+			novo_x = jogador_fase9_x; // Calcula o destino a partir da posicao atual.
+			novo_y = jogador_fase9_y;
+			
+			if (comando == 'w' || comando == 'W') novo_x--;
+			else if  (comando == 's' || comando == 'S') novo_x++;
+			else if (comando == 'a' || comando == 'A') novo_y--;
+			else if (comando == 'd' || comando == 'D') novo_y++;
+			else continue;
+
+			if (novo_x < 0 || novo_x >= LINHAS || // Cancela destinos fora do mapa ou em paredes.
+				novo_y < 0 || novo_y >= COLUNAS - 1 ||
+				mapa_fase9[novo_x][novo_y] == '#') {
+				continue;
+			}
+
+			if (mapa_fase9[novo_x][novo_y] == 'P' && chaves_fase9 < 3) { // Porta bloqueada sem as 3 chaves.
+				continue;
+			}
+
+			jogador_fase9_x = novo_x; // Confirma o movimento permitido.
+			jogador_fase9_y = novo_y;
+
+			if (mapa_fase9[jogador_fase9_x][jogador_fase9_y] == 'C') { // Coleta a chave ao pisar nela.
+				mapa_fase9[jogador_fase9_x][jogador_fase9_y] = ' ';
+				chaves_fase9++;
+				if (chaves_fase9 == 3) {
+					mapa_fase9[12][26] = ' '; // Abre a porta ao coletar a ultima chave.
+				}
+			}
+
+			if (mapa_fase9[jogador_fase9_x][jogador_fase9_y] == 'S' && // S so vale depois das tres chaves.
+				chaves_fase9 == 3) {
+				system("cls || clear");
+				printf("\n\n\n\tPARABENS! Voce completou a fase 9!\n");
+				printf("\n\tAperte [ENTER] para continuar...");
+				_getch();
+				jogando = 0;
+				break;
 			}
 		}
 	}
@@ -1206,14 +1385,15 @@ fase8:
     case '2':
     
 		system("cls || clear");
-    	printf("\n\n\tSelecao de niveis:\n\t[1]Nivel 1: Bem Simple\n\t[2]Nivel 2: Confuso?\n\t[3]Nivel 3: (SSS) Senha Super Secreta\n\t[7]Nivel 7: Labirinto Giratorio\n\t[8]Nivel 8: Comando Maluco\n\ndigite uma opcao valida: ");
+    	printf("\n\n\tSelecao de niveis:\n\t[1]Nivel 1: Bem Simple\n\t[2]Nivel 2: Confuso?\n\t[3]Nivel 3: (SSS) Senha Super Secreta\n\t[7]Nivel 7: Labirinto Giratorio\n\t[8]Nivel 8: Comandos Invertidos\n\t[9]Nivel 9: Cofre das Tres Chaves\n\ndigite uma opcao valida: ");
     	scanf("%d", &voce_realmente_le_o_nome_das_variaveis_uau);
     	if (voce_realmente_le_o_nome_das_variaveis_uau == 1) {jogando = 1; jgnd = 1; break;}
     	if (voce_realmente_le_o_nome_das_variaveis_uau == 2) {jogando = 2; jgnd = 1; break;}
     	if (voce_realmente_le_o_nome_das_variaveis_uau == 3) {jogando = 3; jgnd = 1; break;}
     	if (voce_realmente_le_o_nome_das_variaveis_uau == 7) {jogando = 7; jgnd = 1; break;}
     	if (voce_realmente_le_o_nome_das_variaveis_uau == 8) {jogando = 8; jgnd = 1; break;}
-		
+    	if (voce_realmente_le_o_nome_das_variaveis_uau == 9) {jogando = 9; jgnd = 1; break;}
+
     	if (voce_realmente_le_o_nome_das_variaveis_uau == 401){
     		system("cls || clear");
     		printf("\n\n\t      . - - - - - - .    \n"
