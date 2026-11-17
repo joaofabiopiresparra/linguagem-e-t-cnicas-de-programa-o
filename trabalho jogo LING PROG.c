@@ -735,7 +735,7 @@ int main() {
 							}
 				
 						}
-						if (mapa2[novo_x][novo_y] != '#') {
+						if (mapa2[novo_x][novo_y] != '#'&& mapa2[novo_x][novo_y] != 'P') {
 			    		
 			    		jogador_x = novo_x;
 			    		jogador_y = novo_y;
@@ -1385,7 +1385,7 @@ int main() {
     case '2':
     
 		system("cls || clear");
-    	printf("\n\n\tSelecao de niveis:\n\t[1]Nivel 1: Bem Simple\n\t[2]Nivel 2: Confuso?\n\t[3]Nivel 3: (SSS) Senha Super Secreta\n\t[7]Nivel 7: Labirinto Giratorio\n\t[8]Nivel 8: Comandos Invertidos\n\t[9]Nivel 9: Cofre das Tres Chaves\n\ndigite uma opcao valida: ");
+    	printf("\n\n\tSelecao de niveis:\n\t[1]Nivel 1: Bem Simple\n\t[2]Nivel 2: Confuso?\n\t[3]Nivel 3: (SSS) Senha Super Secreta\n\t[4]Nivel 4: Voce nao parece ser pesado o suficiente\n\t[5]Nivel 5: Parece ter algo la em cima.\n\t[6]Nivel 6\n\t[7]Nivel 7: Labirinto Giratorio\n\t[8]Nivel 8: Comandos Invertidos\n\t[9]Nivel 9: Cofre das Tres Chaves\n\ndigite uma opcao valida: ");
     	scanf("%d", &voce_realmente_le_o_nome_das_variaveis_uau);
     	if (voce_realmente_le_o_nome_das_variaveis_uau == 1) {jogando = 1; jgnd = 1; break;}
     	if (voce_realmente_le_o_nome_das_variaveis_uau == 2) {jogando = 2; jgnd = 1; break;}
