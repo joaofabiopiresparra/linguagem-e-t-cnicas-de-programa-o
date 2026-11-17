@@ -1390,6 +1390,9 @@ int main() {
     	if (voce_realmente_le_o_nome_das_variaveis_uau == 1) {jogando = 1; jgnd = 1; break;}
     	if (voce_realmente_le_o_nome_das_variaveis_uau == 2) {jogando = 2; jgnd = 1; break;}
     	if (voce_realmente_le_o_nome_das_variaveis_uau == 3) {jogando = 3; jgnd = 1; break;}
+    	if (voce_realmente_le_o_nome_das_variaveis_uau == 4) {jogando = 4; jgnd = 1; break;}
+    	if (voce_realmente_le_o_nome_das_variaveis_uau == 5) {jogando = 5; jgnd = 1; break;}
+    	if (voce_realmente_le_o_nome_das_variaveis_uau == 6) {jogando = 6; jgnd = 1; break;}
     	if (voce_realmente_le_o_nome_das_variaveis_uau == 7) {jogando = 7; jgnd = 1; break;}
     	if (voce_realmente_le_o_nome_das_variaveis_uau == 8) {jogando = 8; jgnd = 1; break;}
     	if (voce_realmente_le_o_nome_das_variaveis_uau == 9) {jogando = 9; jgnd = 1; break;}
