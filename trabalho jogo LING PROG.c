@@ -85,60 +85,60 @@ int main() {
 
 	char mapa_giratorio_base[LINHAS][COLUNAS] = { // Fase 7: # e parede, espaco e caminho, S e saida.
 		"##############################",
-		"#@                         #",
-		"# ### ## ### ### ### #      #",
-		"#   #    #   #   #   #      #",
-		"# # # ## # # # # # # #      #",
-		"# #   #  # # # # # # #      #",
-		"# ### # ## # # # # # #      #",
-		"#   # #    #   #   #        #",
-		"# # # #### ## ### ### ###  #",
-		"# #   #    #   #   #   #    #",
-		"# ### # ## # # ### # # #    #",
-		"#     #  # #   #   # #      #",
-		"# ### ## # #### ### # ###  S#",
-		"#                          #",
+		"#@     #      #      #       #",
+		"# ## #          ## #         #",
+		"#      # # ## #      # ## #  #",
+		"### ###### ###### ###### #####",
+		"#      # ## # #      # # ##  #",
+		"# # ## #        # ##         #",
+		"#      #      #      #       #",
+		"##### ###### ###### ###### ###",
+		"#      # # ## #      # ## #  #",
+		"# ## #          ## #         #",
+		"#      #      #      #       #",
+		"## ###### ###### ###### ## ###",
+		"#      #      #      #     S #",
 		"##############################"
 	};
 	char mapa_giratorio[LINHAS][COLUNAS]; // Mapa da fase 7 que pode ser girado.
 	int jogador_giratorio_x = 1; // Linha atual do jogador na fase 7.
 	int jogador_giratorio_y = 1; // Coluna atual do jogador na fase 7.
 	int giro; // Quantidade de giros sorteada para cada movimento.
-	char mapa_invertido[LINHAS][COLUNAS] = { // Fase 8: paredes e passagens sao montadas ao iniciar.
+	char mapa_invertido[LINHAS][COLUNAS] = { // Fase 8: # parede, @ inicio, S saida.
 		"##############################",
-		"#@                          #",
-		"#                            #",
-		"#                            #",
-		"#                            #",
-		"#                            #",
-		"#                            #",
-		"#                            #",
-		"#                            #",
-		"#                            #",
-		"#                            #",
-		"#                            #",
-		"#                            #",
-		"#                            #",
+		"#@   #    #    #    #    #   #",
+		"#    #         #         #   #",
+		"#    #    #    #    #    #   #",
+		"### ##    ## ###    ### ##   #",
+		"#    #    #    #    #    #   #",
+		"#    #    #    #    #    #   #",
+		"#    #    #    #    #    #   #",
+		"#    #    #    #    #    #   #",
+		"#    ### ##    ## ###    ## ##",
+		"#    #    #    #    #    #   #",
+		"#         #         #        #",
+		"#    #    #    #    #    #   #",
+		"#    #    #    #    #    # S #",
 		"##############################"
 	};
-	int jogador_invertido_x = 1; // 
-	int jogador_invertido_y = 1; // 
+	int jogador_invertido_x = 1; // Linha atual do jogador na fase 8.
+	int jogador_invertido_y = 1; // Coluna atual do jogador na fase 8.
 	int inverter_comandos = 0; // 0 aplica o comando normal; 1 aplica o inverso.
-	char mapa_fase9_base[LINHAS][COLUNAS] = { 
+	char mapa_fase9_base[LINHAS][COLUNAS] = { // Fase 9: C chaves, P porta, S saida.
 		"##############################",
-		"#@                          #",
-		"#                            #",
-		"#                            #",
-		"#                            #",
-		"#                            #",
-		"#                            #",
-		"#                            #",
-		"#                            #",
-		"#                            #",
-		"#                            #",
-		"#                            #",
-		"#                            #",
-		"#                            #",
+		"#@#       #   #       #     ##",
+		"# # ### # ### # ### # ### # ##",
+		"# #C#   #   #   #   #   # # ##",
+		"# ### ##### ##### ##### ### ##",
+		"#     #C  # #   #     #   # ##",
+		"######### # # # ##### ### # ##",
+		"#       # #   #   #   #   # ##",
+		"# ### # # ####### # ### ### ##",
+		"# #   #         #   # # #   ##",
+		"# # ### ####### ##### # # # ##",
+		"# # #   #     #C#   #   # # ##",
+		"# # ##### ### ### # # ### ####",
+		"# #         #     #       PS##",
 		"##############################"
 	};
 	char mapa_fase9[LINHAS][COLUNAS]; 
@@ -550,7 +550,7 @@ int main() {
 							}
 				
 						}
-						if (mapa2[novo_x][novo_y] != '#') {
+						if (mapa2[novo_x][novo_y] != '#' && mapa2[novo_x][novo_y] != 'P') {
 			    		
 			    		jogador_x = novo_x;
 			    		jogador_y = novo_y;
@@ -735,7 +735,7 @@ int main() {
 							}
 				
 						}
-						if (mapa2[novo_x][novo_y] != '#'&& mapa2[novo_x][novo_y] != 'P') {
+						if (mapa2[novo_x][novo_y] != '#' && mapa2[novo_x][novo_y] != 'P') {
 			    		
 			    		jogador_x = novo_x;
 			    		jogador_y = novo_y;
@@ -1168,32 +1168,6 @@ int main() {
 	reiniciar_possisao();
 
 	if (jogando == 8) { // Inicia a fase 8 se ela foi selecionada.
-		for (i = 0; i < LINHAS; i++) { // Preenche casas vazias e remove @ do mapa fixo.
-			for (j = 0; j < COLUNAS - 1; j++) {
-				if (mapa_invertido[i][j] == '\0') {
-					mapa_invertido[i][j] = ' ';
-				} else if (mapa_invertido[i][j] == '@') {
-					mapa_invertido[i][j] = ' ';
-				}
-			}
-			mapa_invertido[i][0] = '#';
-			mapa_invertido[i][COLUNAS - 2] = '#';
-		}
-		for (j = 0; j < COLUNAS - 1; j++) { // Fecha as bordas superior e inferior.
-			mapa_invertido[0][j] = '#';
-			mapa_invertido[LINHAS - 1][j] = '#';
-		}
-		for (i = 1; i < LINHAS - 1; i++) { // Cria paredes verticais entre os corredores.
-			for (j = 5; j <= 25; j += 5) {
-				mapa_invertido[i][j] = '#';
-			}
-		}
-		mapa_invertido[11][5] = ' '; // Abre passagens alternadas para formar um zigue-zague.
-		mapa_invertido[2][10] = ' ';
-		mapa_invertido[11][15] = ' ';
-		mapa_invertido[2][20] = ' ';
-		mapa_invertido[11][25] = ' ';
-		mapa_invertido[13][27] = 'S'; // Coloca a saida no fim do ultimo corredor.
 		jogador_invertido_x = 1; // Posicao inicial do jogador.
 		jogador_invertido_y = 1;
 		inverter_comandos = 0;
@@ -1277,38 +1251,7 @@ int main() {
 					mapa_fase9[i][j] = ' ';
 				}
 			}
-			mapa_fase9[i][0] = '#';
-			mapa_fase9[i][COLUNAS - 2] = '#';
 		}
-		for (j = 0; j < COLUNAS - 1; j++) { // Fecha as bordas superior e inferior.
-			mapa_fase9[0][j] = '#';
-			mapa_fase9[LINHAS - 1][j] = '#';
-		}
-
-		for (i = 2; i <= 12; i += 2) { // Cria barreiras horizontais nas linhas pares.
-			for (j = 1; j < COLUNAS - 2; j++) {
-				mapa_fase9[i][j] = '#';
-			}
-		}
-
-		mapa_fase9[2][2] = ' '; // Abre passagens em pontos diferentes do labirinto.
-		mapa_fase9[2][24] = ' ';
-		mapa_fase9[4][2] = ' ';
-		mapa_fase9[4][18] = ' ';
-		mapa_fase9[6][6] = ' ';
-		mapa_fase9[6][26] = ' ';
-		mapa_fase9[8][10] = ' ';
-		mapa_fase9[8][24] = ' ';
-		mapa_fase9[10][2] = ' ';
-		mapa_fase9[10][26] = ' ';
-		mapa_fase9[4][2] = 'C'; // Coloca as tres chaves nos corredores.
-		mapa_fase9[8][10] = 'C';
-		mapa_fase9[12][2] = 'C';
-		mapa_fase9[12][26] = 'P'; // A porta P protege a saida S.
-		mapa_fase9[12][27] = 'S';
-		mapa_fase9[12][28] = '#';
-		mapa_fase9[11][27] = '#';
-		mapa_fase9[13][27] = '#';
 		jogador_fase9_x = 1; // Reinicia o jogador no inicio do mapa.
 		jogador_fase9_y = 1;
 		chaves_fase9 = 0;
@@ -1339,7 +1282,7 @@ int main() {
 
 			novo_x = jogador_fase9_x; // Calcula o destino a partir da posicao atual.
 			novo_y = jogador_fase9_y;
-			
+
 			if (comando == 'w' || comando == 'W') novo_x--;
 			else if  (comando == 's' || comando == 'S') novo_x++;
 			else if (comando == 'a' || comando == 'A') novo_y--;
@@ -1363,7 +1306,7 @@ int main() {
 				mapa_fase9[jogador_fase9_x][jogador_fase9_y] = ' ';
 				chaves_fase9++;
 				if (chaves_fase9 == 3) {
-					mapa_fase9[12][26] = ' '; // Abre a porta ao coletar a ultima chave.
+					mapa_fase9[13][26] = ' '; // Abre a porta ao coletar a ultima chave.
 				}
 			}
 
