@@ -539,17 +539,24 @@ int main() {
 							}
 				
 						if(mapa2[novo_x][novo_y]=='='){
-							printf("\ndeseja subir? (1-sim/2-nao): ");
-							scanf("%d", &escada);
-							
-							if(escada==1){
-								andar=2;
-								jogador_x=6; //posição que o @ aparece no 2º andar
-								jogador_y=2;
-								continue;
-							}
-				
+						printf("\ndeseja subir? (1-sim/2-nao): ");
+					    if (scanf("%d", &escada) != 1) {
+					        while (getchar() != '\n');
+					        continue;
+					    }
+					
+					    if (escada == 1) {
+					        andar = 2;
+					        jogador_x = 6;
+					        jogador_y = 2;
+					        continue;
+					    }
+					
+					    else if (escada != 1) {
+					    continue;
 						}
+					}
+					
 						if (mapa2[novo_x][novo_y] != '#' && mapa2[novo_x][novo_y] != 'P') {
 			    		
 			    		jogador_x = novo_x;
@@ -604,14 +611,21 @@ int main() {
 					
 					else if(mapa2_2[novo_x][novo_y]=='='){
 							printf("\ndeseja descer? (1-sim/2-nao): ");
-							scanf("%d", &escada);
+					    if (scanf("%d", &escada) != 1) {
+					        while (getchar() != '\n');
+					        continue;
+					    }
 					
-						if(escada==1){
-							andar=1;
-							jogador_x = 9;
-                    		jogador_y = 4;
+					    if (escada == 1) {
+					        andar = 1;
+					        jogador_x = 11;
+					        jogador_y = 2;
+					        continue;
+					    }
+					
+					    else if (escada != 2) {
 							continue;
-						}		
+					    }
 					}
 					
 					if (mapa2_2[novo_x][novo_y] == '-') {
@@ -725,16 +739,22 @@ int main() {
 				
 						if(mapa2[novo_x][novo_y]=='='){
 							printf("\ndeseja subir? (1-sim/2-nao): ");
-							scanf("%d", &escada);
-							
-							if(escada==1){
-								andar=2;
-								jogador_x=6; //posição que o @ aparece no 2º andar
-								jogador_y=2;
+						    if (scanf("%d", &escada) != 1) {
+						        while (getchar() != '\n');
+						        continue;
+						    }
+						
+						    if (escada == 1) {
+						        andar = 2;
+						        jogador_x = 6;
+						        jogador_y = 2;
+						    }
+						
+						    else if (escada != 1) {
 								continue;
-							}
-				
+						    }
 						}
+						
 						if (mapa2[novo_x][novo_y] != '#' && mapa2[novo_x][novo_y] != 'P') {
 			    		
 			    		jogador_x = novo_x;
@@ -788,15 +808,21 @@ int main() {
 						}
 					
 					else if(mapa2_2[novo_x][novo_y]=='='){
-							printf("\ndeseja descer? (1-sim/2-nao): ");
-							scanf("%d", &escada);
+						printf("\ndeseja descer? (1-sim/2-nao): ");
+					    if (scanf("%d", &escada) != 1) {
+					        while (getchar() != '\n');
+					        continue;
+					    }
 					
-						if(escada==1){
-							andar=1;
-							jogador_x = 9;
-                    		jogador_y = 4;
+					    if (escada == 1) {
+					        andar = 2;
+					        jogador_x = 11;
+					        jogador_y = 2;
+					    }
+					
+					    else if (escada != 1) {
 							continue;
-						}		
+					    }
 					}
 					
 					if (mapa2_2[novo_x][novo_y] == '-') {
@@ -966,16 +992,21 @@ int main() {
 				        if (mapa2[novo_x][novo_y] == '=') {
 				
 				            printf("\ndeseja subir? (1-sim/2-nao): ");
-				            scanf("%d", &escada);
-				
-				            if (escada == 1) {
-				                andar = 2;
-				                jogador_x = 6;
-				                jogador_y = 2;
-				            }
-				
-				            continue;
-				        }
+						    if (scanf("%d", &escada) != 1) {
+						        while (getchar() != '\n');
+						        continue;
+						    }
+						
+						    if (escada == 1) {
+						        andar = 2;
+						        jogador_x = 6;
+						        jogador_y = 2;
+						    }
+						
+						    else if (escada != 1) {
+								continue;
+						    }
+						}
 				
 				        jogador_x = novo_x;
 				        jogador_y = novo_y;
@@ -1025,15 +1056,21 @@ int main() {
 						}
 					
 					else if(mapa2_2[novo_x][novo_y]=='='){
-							printf("\ndeseja descer? (1-sim/2-nao): ");
-							scanf("%d", &escada);
+						printf("\ndeseja descer? (1-sim/2-nao): ");
+					    if (scanf("%d", &escada) != 1) {
+					        while (getchar() != '\n');
+					        continue;
+					    }
 					
-						if(escada==1){
-							andar=1;
-							jogador_x = 9;
-                    		jogador_y = 4;
+					    if (escada == 1) {
+					        andar = 1;
+					        jogador_x = 11;
+					        jogador_y = 2;
+					    }
+					
+					    else if (escada != 1) {
 							continue;
-						}		
+					    }
 					}
 					
 					if (mapa2_2[novo_x][novo_y] == '-') {
