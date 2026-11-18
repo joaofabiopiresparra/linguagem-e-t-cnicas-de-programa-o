@@ -647,7 +647,7 @@ int main() {
 	    
 	    
 //2)	    
-	    reiniciar_possisao();
+reiniciar_possisao();
 	    
 	    andar_pedra=2;
 	    blocox = 4;
@@ -737,23 +737,24 @@ int main() {
 							}
 				
 						if(mapa2[novo_x][novo_y]=='='){
-							printf("\ndeseja subir? (1-sim/2-nao): ");
-						    if (scanf("%d", &escada) != 1) {
-						        while (getchar() != '\n');
-						        continue;
-						    }
-						
-						    if (escada == 1) {
-						        andar = 2;
-						        jogador_x = 6;
-						        jogador_y = 2;
-						    }
-						
-						    else if (escada != 1) {
-								continue;
-						    }
+						printf("\ndeseja subir? (1-sim/2-nao): ");
+					    if (scanf("%d", &escada) != 1) {
+					        while (getchar() != '\n');
+					        continue;
+					    }
+					
+					    if (escada == 1) {
+					        andar = 2;
+					        jogador_x = 6;
+					        jogador_y = 2;
+					        continue;
+					    }
+					
+					    else if (escada != 1) {
+					    continue;
 						}
-						
+					}
+					
 						if (mapa2[novo_x][novo_y] != '#' && mapa2[novo_x][novo_y] != 'P') {
 			    		
 			    		jogador_x = novo_x;
@@ -807,19 +808,20 @@ int main() {
 						}
 					
 					else if(mapa2_2[novo_x][novo_y]=='='){
-						printf("\ndeseja descer? (1-sim/2-nao): ");
+							printf("\ndeseja descer? (1-sim/2-nao): ");
 					    if (scanf("%d", &escada) != 1) {
 					        while (getchar() != '\n');
 					        continue;
 					    }
 					
 					    if (escada == 1) {
-					        andar = 2;
+					        andar = 1;
 					        jogador_x = 11;
 					        jogador_y = 2;
+					        continue;
 					    }
 					
-					    else if (escada != 1) {
+					    else if (escada != 2) {
 							continue;
 					    }
 					}
