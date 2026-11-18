@@ -1,8 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <windows.h> // biblioteca para poder fazer um timer
-#include <unistd.h>  // mesma coisa so que pra linux
-#include <conio.h>//_getch()
+#include <windows.h>
+#include <unistd.h> 
 
 #define LINHAS 15     // tamanho do level
 #define COLUNAS 31
@@ -106,7 +105,7 @@ int main() {
 	int giro; // Quantidade de giros sorteada para cada movimento.
 	char mapa_invertido[LINHAS][COLUNAS] = { // Fase 8: # parede, @ inicio, S saida.
 		"##############################",
-		"#@   #    #    #    #    #   #",
+		"#    #    #    #    #    #   #",
 		"#    #         #         #   #",
 		"#    #    #    #    #    #   #",
 		"### ##    ## ###    ### ##   #",
@@ -857,26 +856,7 @@ int main() {
 	    	for(i=1;i<3;i++){
 				mapa2[i][24]='P';
 			}
-			for(i=4;i<20;i++){
-				mapa2[i][24]='#';
-			}
 
-			for(i = 1; i < 9; i++){
-		    	for(j = 1; j < 10; j++){
-		        	mapa2[i][j] = '#';
-		    	}
-			}
-			for(i = 11; i < 16; i++){
-				for(j = 1; j < 25; j++){
-					mapa2[i][j] = '#';
-				}
-			}
-			for(i = 12; i < 15; i++){
-			    for(j = 2; j < 23; j++){
-			        mapa2[i][j] = '#';
-			    }
-			}
-			
 			mapa2[9][22] = 'B';
 
 		}
